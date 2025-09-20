@@ -1,0 +1,193 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* AI-Enhanced Flashcard Learning App Design System
+Modern, professional design inspired by contemporary learning platforms
+All colors MUST be HSL for proper theming
+*/
+
+@layer base {
+  :root {
+    /* Base colors - Clean, modern palette */
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+
+    /* Card system - Elevated surfaces */
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    /* Popover system */
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    /* Primary brand - Learning-focused purple gradient */
+    --primary: 262 83% 58%;
+    --primary-foreground: 210 20% 98%;
+    --primary-glow: 262 83% 68%;
+
+    /* Secondary - Professional blue accent */
+    --secondary: 217 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    /* Muted elements */
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+
+    /* Accent - Success green for learning progress */
+    --accent: 142 76% 36%;
+    --accent-foreground: 355 7% 97%;
+
+    /* Destructive - Warm red for errors */
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    /* Form elements */
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 262 83% 58%;
+
+    /* Border radius for modern feel */
+    --radius: 0.75rem;
+
+    /* Learning-specific colors */
+    --learning-easy: 142 76% 36%;
+    --learning-medium: 43 96% 56%;
+    --learning-hard: 0 84% 60%;
+    --learning-new: 217 91% 60%;
+
+    /* AI-specific gradients */
+    --gradient-ai: linear-gradient(135deg, hsl(262 83% 58%), hsl(217 91% 60%));
+    --gradient-learning: linear-gradient(135deg, hsl(142 76% 36%), hsl(43 96% 56%));
+    --gradient-premium: linear-gradient(135deg, hsl(262 83% 58%), hsl(262 83% 68%));
+
+    /* Sidebar system for navigation */
+    --sidebar-background: 240 10% 3.9%;
+    --sidebar-foreground: 240 5% 84.9%;
+    --sidebar-primary: 262 83% 58%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 5% 84.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 262 83% 58%;
+
+    /* Shadows and effects */
+    --shadow-elegant: 0 10px 30px -10px hsl(262 83% 58% / 0.3);
+    --shadow-card: 0 4px 6px -1px hsl(240 10% 3.9% / 0.1);
+    --shadow-glow: 0 0 40px hsl(262 83% 68% / 0.4);
+
+    /* Animation variables */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  /* Light mode alternative - currently using dark as primary */
+  .light {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 262 83% 58%;
+    --primary-foreground: 210 20% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 142 76% 36%;
+    --accent-foreground: 355 7% 97%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 262 83% 58%;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 262 83% 58%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 262 83% 58%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Custom scrollbar for modern feel */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-muted;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/20 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/40;
+  }
+}
+
+@layer components {
+  /* Learning app specific styles */
+  .flashcard-flip {
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+  }
+
+  .flashcard-flip.flipped {
+    transform: rotateY(180deg);
+  }
+
+  .flashcard-front,
+  .flashcard-back {
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .flashcard-back {
+    transform: rotateY(180deg);
+  }
+
+  .gradient-ai {
+    background: var(--gradient-ai);
+  }
+
+  .gradient-learning {
+    background: var(--gradient-learning);
+  }
+
+  .gradient-premium {
+    background: var(--gradient-premium);
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 20px hsl(var(--primary) / 0.2);
+    }
+    to {
+      box-shadow: 0 0 30px hsl(var(--primary) / 0.4);
+    }
+  }
+}
